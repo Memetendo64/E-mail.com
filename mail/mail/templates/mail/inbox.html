@@ -1,0 +1,45 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="nav">
+        <h1>E-Mail.com</h1>
+        <h3 style="margin-left: 550px;">Email: {{ request.user.email }}</h3>
+    </div>
+
+    <div class="navtwo">
+        <a id="inbox">Inbox</a>
+        <a id="compose">Compose</a>
+        <a id="sent">Sent</a>
+        <a id="archived">Archived</a>
+        <a href="{% url 'logout' %}">Log Out</a>
+    </div>
+
+    <div id="emails-view">
+        <!-- emails div -->
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            
+            
+                To: <input id="compose-recipients" class="form-control">
+            
+            
+                Subject: <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Message:"></textarea>
+            <input type="submit" class="btn btn-primary" style="margin-top: 5px; margin-bottom: 15px;"/>
+        </form>
+    </div>
+
+    <div id="email-detail-view">
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
